@@ -6810,11 +6810,11 @@ class Ui_MainWindow(object):
                 icon_new_pixel = self.create_new_image_pixel(picn, size)
                 if os.path.exists(icon_new_pixel):
                     try:
-                        if row < self.list2.count():
+                        if row < self.list2.count() and icon_new_pixel is not None:
                             self.list2.item(row).setIcon(QtGui.QIcon(icon_new_pixel))
                             if ((ui.view_mode == "thumbnail_light"
                                     and ui.list_poster.title_clicked)
-                                    or ui.display_device == "rpitv"):
+                                    or (ui.display_device == "rpitv" and icon_new_pixel is not None)):
                                 ui.list_poster.item(row).setIcon(QtGui.QIcon(icon_new_pixel))
                     except Exception as err:
                         logger.error(err)
